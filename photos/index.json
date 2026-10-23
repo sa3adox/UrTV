@@ -428,5 +428,17 @@
   "f": "rkRYbmPuhOE.jpg",
   "c": "Stijn te Strake · Unsplash",
   "d": 0.72
+ },
+ {
+  "f": "kuwait-city.svg",
+  "c": "تصميم UrTV · الكويت",
+  "d": 0.9,
+  "theme": "kuwait"
+ },
+ {
+  "f": "roma-stadium.svg",
+  "c": "تصميم UrTV · روما",
+  "d": 0.9,
+  "theme": "roma"
  }
 ]

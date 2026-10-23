@@ -150,8 +150,9 @@ urtv.html#city=جدة&lat=21.5433&lon=39.1728&tz=Asia/Riyadh&teams=136013,136137
 `teams`: up to 10 TheSportsDB ids in priority order. `panel`: the card beside the clock: `shows`, `prayers`,
 `forecast`, `matches`, `verse` or `none`. Also `genres`, `langs`, `shows`, `minrating` for the episodes card.
 
-**Data** (free, no keys): Aladhan (prayer times, Umm al-Qura), Open-Meteo (weather), Yahoo and CoinGecko (markets),
-TVMaze (episodes), TheSportsDB (matches). Everything fails soft: offline, the clock, dates, prayer and Ramadan
+**Data** (free, no keys): Aladhan (prayer times, Umm al-Qura), Open-Meteo (weather), Yahoo, CoinGecko and
+TradingView (markets), TVMaze (episodes), TheSportsDB (matches). The Kuwait All-Share Index and KFH ticker
+are embedded from TradingView and require an internet connection. Everything fails soft: offline, the clock, dates, prayer and Ramadan
 countdowns still work and the last good data stays on screen. A finished game's score stays up for a day.
 
 **Verse and hadith texts are never typed by hand:** verses come from the Quran API via CI
@@ -163,7 +164,7 @@ Arabic text of the six Sunni books, and only those found are shown, with the boo
 
 ## Credits
 
-Photos: Unsplash photographers, listed in [docs/PHOTO-CREDITS.md](docs/PHOTO-CREDITS.md). Fonts: Thmanyah, and
+Photos: Unsplash photographers, listed in [docs/PHOTO-CREDITS.md](docs/PHOTO-CREDITS.md), plus original Kuwait and Roma vector wallpapers. Fonts: Thmanyah, and
 Noto Naskh Arabic for ﷺ ﴿﴾ (OFL, `assets/fonts/`).
 Home screen adapted from [mihirgupta0900/tv-home](https://github.com/mihirgupta0900/tv-home) (MIT,
 `android/launcher/LICENSE-tv-home`). Package ratings from [UAD-ng](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation).

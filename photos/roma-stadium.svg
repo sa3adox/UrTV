@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+<defs>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#111520"/><stop offset=".54" stop-color="#4a2432"/><stop offset="1" stop-color="#ae6845"/></linearGradient>
+ <linearGradient id="pitch" x2="0" y2="1"><stop stop-color="#637b56"/><stop offset="1" stop-color="#172c23"/></linearGradient>
+ <radialGradient id="lights"><stop stop-color="#ffe3ad" stop-opacity=".85"/><stop offset="1" stop-color="#ffd895" stop-opacity="0"/></radialGradient>
+ <linearGradient id="shade" x2="0" y2="1"><stop stop-color="#080a10" stop-opacity=".05"/><stop offset="1" stop-color="#080a10" stop-opacity=".86"/></linearGradient>
+</defs>
+<rect width="1920" height="1080" fill="url(#sky)"/>
+<ellipse cx="260" cy="350" rx="270" ry="175" fill="url(#lights)"/><ellipse cx="1660" cy="330" rx="300" ry="200" fill="url(#lights)"/>
+<!-- stadium bowl and floodlit roof -->
+<path d="M-90 325Q960 70 2010 325v395Q960 496-90 720z" fill="#26202a" stroke="#c69a55" stroke-width="15"/>
+<path d="M-40 365Q960 132 1960 365v100Q960 274-40 465z" fill="#8e6b48" opacity=".7"/>
+<path d="M-30 430Q960 330 1950 430v172Q960 493-30 602z" fill="#6e2939"/>
+<!-- crowd lights -->
+<g fill="#f4d79d" opacity=".86">
+ <path d="M-15 450Q960 360 1935 450v20Q960 384-15 470z"/>
+ <path d="M-10 503Q960 424 1930 503v14Q960 449-10 517z"/>
+</g>
+<g fill="#d9b56e" opacity=".55">
+ <circle cx="95" cy="482" r="5"/><circle cx="155" cy="468" r="4"/><circle cx="230" cy="473" r="5"/><circle cx="321" cy="461" r="4"/><circle cx="419" cy="466" r="5"/><circle cx="515" cy="450" r="4"/><circle cx="610" cy="458" r="5"/><circle cx="720" cy="447" r="4"/><circle cx="835" cy="452" r="5"/><circle cx="940" cy="445" r="4"/><circle cx="1060" cy="447" r="5"/><circle cx="1175" cy="451" r="4"/><circle cx="1290" cy="454" r="5"/><circle cx="1415" cy="461" r="4"/><circle cx="1530" cy="468" r="5"/><circle cx="1645" cy="472" r="4"/><circle cx="1755" cy="480" r="5"/><circle cx="1850" cy="490" r="4"/>
+</g>
+<path d="M0 600Q960 535 1920 600v110H0z" fill="#17171e"/>
+<path d="M0 680h1920v400H0z" fill="url(#pitch)"/>
+<path d="M0 737Q960 670 1920 737" fill="none" stroke="#e5d4a6" stroke-opacity=".56" stroke-width="5"/>
+<ellipse cx="960" cy="865" rx="430" ry="155" fill="none" stroke="#e5d4a6" stroke-opacity=".47" stroke-width="5"/>
+<path d="M960 690v390M0 1010h420v-210h-420M1920 1010h-420v-210h420" fill="none" stroke="#e5d4a6" stroke-opacity=".47" stroke-width="5"/>
+<!-- Roma-inspired colors and celebratory scarves, without using club marks -->
+<path d="M0 985Q250 880 500 985T1000 985t500 0 420 0v95H0z" fill="#711d32" opacity=".9"/>
+<path d="M0 1026Q260 920 520 1026t520 0 520 0 360 0" fill="none" stroke="#d2a84f" stroke-width="18" opacity=".88"/>
+<rect width="1920" height="1080" fill="url(#shade)"/>
+</svg>

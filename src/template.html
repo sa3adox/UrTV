@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>شاشة تلفزيونك</title>
+<script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
 <style>
   @font-face{font-family:'Thmanyah';font-weight:300;font-style:normal;font-display:block;src:url("__F_LIGHT__") format("woff2")}
   @font-face{font-family:'Thmanyah';font-weight:400;font-style:normal;font-display:block;src:url("__F_REGULAR__") format("woff2")}
@@ -234,6 +235,8 @@
   .mk .delta{font-size:.72em}
   .mk .delta.up{color:#79D6A0}
   .mk .delta.down{color:#EE8B70}
+  .kw-tickers{margin-top:.8vh;width:clamp(300px,34vw,620px);height:38px;overflow:hidden}
+  .kw-tickers tv-ticker-tape{display:block;width:100%;height:38px}
   .p-prayer.now .big{color:#FFE9B8;text-shadow:0 0 40px rgba(220,184,111,.45)}
   .p-prayer.now .label{color:#F1CF8A}
   .live{color:#EE8B70;font-weight:500}
@@ -275,6 +278,11 @@
         <span class="m"><span>تاسي</span><span id="tasi-chg" class="delta" hidden></span></span>
         <span class="m"><span>S&amp;P 500</span><span id="spx-chg" class="delta" hidden></span></span>
         <span class="m"><span>بيتكوين</span><span id="btc-chg" class="delta" hidden></span></span>
+      </div>
+      <div class="kw-tickers" aria-label="مؤشر بورصة الكويت وسهم بيتك">
+        <tv-ticker-tape symbols="KSE:BKA,KSE:KFH" direction="horizontal" hide-chart item-size="compact" theme="dark" transparent>
+          مؤشر بورصة الكويت · بيت التمويل الكويتي
+        </tv-ticker-tape>
       </div>
     </div>
   </header>
@@ -1189,6 +1197,14 @@ function photoSet(n){
   const period = Math.floor(riyadhDayNumber() / PHOTO_PERIOD_DAYS);
   let seed = (period % 2147483646) + 1;
   const pick = [];
+  // Keep one Kuwait and one Roma design in every rotating set, alongside three landscape photos.
+  for(const theme of ['kuwait', 'roma']){
+    const choices = REMOTE_BGS.map((p, i) => p && p.theme === theme ? i : -1).filter(i => i >= 0);
+    if(choices.length){
+      seed = (seed * 48271) % 2147483647;
+      pick.push(choices[seed % choices.length]);
+    }
+  }
   for(let guard = 0; pick.length < Math.min(PHOTO_SET, n) && guard < 1000; guard++){
     seed = (seed * 48271) % 2147483647;
     const k = seed % n;
@@ -1223,8 +1239,8 @@ function applyBackground(force){
 }
 
 // Last painted panels, shown at once on the next start while fresh data loads.
-const SNAP_KEY = 'snap3:' + location.hash;   // bump when the panels' markup changes
-const SNAP_SEL = ['.markets', '#week-list', '#match-row'];
+const SNAP_KEY = 'snap4:' + location.hash;   // bump when the panels' markup changes
+const SNAP_SEL = ['.mk', '#week-list', '#match-row'];
 function saveSnap(){
   try{ localStorage.setItem(SNAP_KEY, JSON.stringify(SNAP_SEL.map(q => (document.querySelector(q)||{}).innerHTML || ''))); }catch(e){}
 }

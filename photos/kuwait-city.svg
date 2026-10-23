@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+<defs>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#071a35"/><stop offset=".42" stop-color="#9b6275"/><stop offset=".73" stop-color="#f1a56f"/><stop offset="1" stop-color="#f6d19b"/></linearGradient>
+ <linearGradient id="sea" x2="0" y2="1"><stop stop-color="#183d55"/><stop offset="1" stop-color="#071c2c"/></linearGradient>
+ <linearGradient id="glass" x2="0" y2="1"><stop stop-color="#b5d5dc"/><stop offset="1" stop-color="#34596b"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#ffe6ae" stop-opacity=".8"/><stop offset="1" stop-color="#f3a47c" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1920" height="1080" fill="url(#sky)"/><ellipse cx="1080" cy="685" rx="630" ry="270" fill="url(#glow)"/>
+<circle cx="1055" cy="647" r="74" fill="#ffd99b" opacity=".9"/>
+<!-- distant Kuwait City skyline -->
+<path fill="#172b42" d="M0 710h82v-96h31v96h41V570h26v140h47v-84h45v84h31V527h30v183h31v-94h47v94h22V582h46v128h35V488h28v222h34v-96h40v96h37V550h50v160h26v-65h57v65h28v-131h44v131h26v-85h46v85h31V564h49v146h30v-99h51v99h35v-172h31v172h30v-99h56v99h38v-127h50v127h30v-78h42v78h29v-151h36v151h51v-87h36v87h46v-117h28v117h66v370H0z" opacity=".68"/>
+<!-- Kuwait Towers silhouette -->
+<g fill="url(#glass)" stroke="#e4d0ae" stroke-width="7" stroke-linejoin="round">
+ <path d="M570 1080 644 487q8-45 54-45t53 45l79 593z"/><path d="M614 668q80-59 163 0l-12 73q-70-48-140 0z" fill="#e5a96f"/>
+ <path d="M705 1080 779 390q8-43 53-43t53 43l82 690z"/><path d="M748 575q80-56 162 0l-12 68q-70-47-140 0z" fill="#e5a96f"/>
+ <path d="M880 1080 945 538q7-41 48-41t49 41l72 542z"/><path d="M918 702q74-53 150 0l-11 62q-64-43-129 0z" fill="#e5a96f"/>
+</g>
+<g fill="#20394c" opacity=".85"><path d="M0 765q200-30 398 0t397 0 398 0 397 0 330 0v315H0z"/></g>
+<rect y="785" width="1920" height="295" fill="url(#sea)"/>
+<path d="M0 847q205-24 410 0t410 0 410 0 410 0 280 0M0 913q250-20 500 0t500 0 500 0 420 0M0 1004q210-15 420 0t420 0 420 0 420 0" fill="none" stroke="#d9b989" stroke-opacity=".38" stroke-width="5"/>
+<path d="M0 1073h1920" stroke="#f0bd80" stroke-opacity=".48" stroke-width="13"/>
+<!-- quiet dark edge for screen overlays -->
+<rect width="1920" height="1080" fill="#06111f" opacity=".16"/>
+</svg>
