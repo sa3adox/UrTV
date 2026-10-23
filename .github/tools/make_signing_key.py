@@ -18,6 +18,7 @@ key need them installed again once (optimize/install.sh does that by itself; the
 """
 import base64
 import datetime
+import os
 import secrets
 import shutil
 import subprocess
@@ -31,7 +32,7 @@ from cryptography.hazmat.primitives.serialization import pkcs12
 from cryptography.x509.oid import NameOID
 
 ALIAS = b"urtv"   # android/*/build.gradle signs with this alias
-REPO = "tshi-dev/UrTV"
+REPO = os.environ.get("URTV_REPO", "sa3adox/UrTV")
 
 
 def make(password):
@@ -47,14 +48,17 @@ def make(password):
 
 
 def main():
-    out = Path.home() / "urtv-signing-key.p12"
+    key_dir = Path(os.environ.get("URTV_KEY_DIR", Path.home()))
+    key_dir.mkdir(parents=True, exist_ok=True)
+    out = key_dir / "urtv-signing-key.p12"
     if out.exists():
         sys.exit(f"{out} already exists: that is your key. Use it, or move it away first to make a new one.")
     password = secrets.token_urlsafe(30)
     data = make(password)
     out.write_bytes(data)
-    (Path.home() / "urtv-signing-key-password.txt").write_text(password + "\n")
-    print(f"Key saved to {out}, its password to {Path.home() / 'urtv-signing-key-password.txt'}")
+    password_file = key_dir / "urtv-signing-key-password.txt"
+    password_file.write_text(password + "\n")
+    print(f"Key saved to {out}, its password to {password_file}")
     print("Keep both somewhere safe (a password manager, a USB stick); never commit them.\n")
     secret = {"ANDROID_KEYSTORE_B64": base64.b64encode(data).decode(), "ANDROID_KEYSTORE_PASSWORD": password}
     gh = gh_ready()
@@ -63,9 +67,11 @@ def main():
             subprocess.run([gh, "secret", "set", name, "--repo", REPO], input=value, text=True, check=True)
         print(f"Both secrets are now in {REPO}. The next build signs with this key.")
         return
-    print("GitHub CLI isn't signed in, so add these two secrets by hand (see the top of this file):\n")
+    print("GitHub CLI isn't signed in, so the secret values were saved to local files for manual entry:")
     for name, value in secret.items():
-        print(f"{name}:\n{value}\n")
+        secret_file = key_dir / f"{name}.txt"
+        secret_file.write_text(value + "\n")
+        print(f"{name}: {secret_file}")
 
 
 def gh_ready():
