@@ -17,6 +17,10 @@ android {
         buildConfigField "String", "GITHUB_REPO", "\"${System.getenv('URTV_REPO') ?: 'sa3adox/UrTV'}\""
     }
 
+    buildFeatures {
+        buildConfig true
+    }
+
     signingConfigs {
         // the key lives only in the repository's secrets (made with .github/tools/make_signing_key.py) and CI refuses
         // to build without it; a local build without ANDROID_KEYSTORE gets the debug key, so it can't update the TV's apps
