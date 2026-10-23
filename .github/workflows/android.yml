@@ -16,6 +16,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build the page
+        env:
+          URTV_REPO: ${{ github.repository }}
+          URTV_BRANCH: ${{ github.ref_name }}
         run: python3 src/build.py
 
       - uses: actions/setup-java@v4
@@ -42,6 +45,7 @@ jobs:
       - name: Build APKs
         env:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          URTV_REPO: ${{ github.repository }}
           URTV_BRANCH: ${{ github.ref_name }}   # the screensaver fetches its page from the branch it was built from
         run: gradle -p android assembleRelease --no-daemon
 

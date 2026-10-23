@@ -440,5 +440,17 @@
   "c": "تصميم UrTV · روما",
   "d": 0.9,
   "theme": "roma"
+ },
+ {
+  "f": "kuwait-marina.svg",
+  "c": "تصميم UrTV · مرسى الكويت",
+  "d": 0.9,
+  "theme": "kuwait"
+ },
+ {
+  "f": "roma-colosseum.svg",
+  "c": "تصميم UrTV · روما القديمة",
+  "d": 0.9,
+  "theme": "roma"
  }
 ]

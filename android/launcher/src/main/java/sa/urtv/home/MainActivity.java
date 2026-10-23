@@ -806,7 +806,7 @@ public class MainActivity extends Activity {
 
     // Hosted photos (photos/index.json in the repo) join the bundled ones. Each is downloaded once into
     // files/photos and reused; offline or on any failure the next bundled photo is shown instead.
-    static final String PHOTO_BASE = "https://raw.githubusercontent.com/tshi-dev/UrTV/master/photos/";
+    static final String PHOTO_BASE = "https://raw.githubusercontent.com/" + BuildConfig.GITHUB_REPO + "/" + BuildConfig.BRANCH + "/photos/";
     static final long INDEX_MAX_AGE_MS = 24 * 3600 * 1000L;
 
     static final int PHOTO_SET = 5, PHOTO_PERIOD_DAYS = 4;
@@ -816,7 +816,7 @@ public class MainActivity extends Activity {
         String s = prefs().getString("photoIndex", "");
         if (s.isEmpty()) return new String[0];
         String[] all = s.split(",");
-        java.util.Calendar c = java.util.Calendar.getInstance(java.util.TimeZone.getTimeZone("Asia/Riyadh"));
+        java.util.Calendar c = java.util.Calendar.getInstance(java.util.TimeZone.getTimeZone("Asia/Kuwait"));
         java.util.Calendar utc = java.util.Calendar.getInstance(java.util.TimeZone.getTimeZone("UTC"));
         utc.clear();
         utc.set(c.get(java.util.Calendar.YEAR), c.get(java.util.Calendar.MONTH), c.get(java.util.Calendar.DAY_OF_MONTH));

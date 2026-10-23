@@ -13,6 +13,8 @@ android {
         // the same version as the screensaver (see android/app/build.gradle)
         versionCode((System.getenv('GITHUB_RUN_NUMBER') ?: '1') as int)
         versionName "3.${System.getenv('GITHUB_RUN_NUMBER') ?: '0'}"
+        buildConfigField "String", "BRANCH", "\"${System.getenv('URTV_BRANCH') ?: 'master'}\""
+        buildConfigField "String", "GITHUB_REPO", "\"${System.getenv('URTV_REPO') ?: 'sa3adox/UrTV'}\""
     }
 
     signingConfigs {
@@ -35,7 +37,7 @@ android {
         }
     }
 
-    // wallpapers are the screensaver's Saudi photos, copied in at build time
+    // bundled wallpapers, copied in at build time
     sourceSets {
         main { assets.srcDirs += ["$buildDir/generated/wallpapers", "$buildDir/generated/web"] }
     }

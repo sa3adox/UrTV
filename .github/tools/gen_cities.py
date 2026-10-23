@@ -81,6 +81,16 @@ EXTRA = [
     ("20", "دومة الجندل", 29.8115, 39.8687), ("20", "القريات", 31.3317, 37.3428),
 ]
 
+# Extra region kept in the personalized Kuwait fork alongside the generated Saudi regions.
+EXTRA_REGIONS = [
+    ("دولة الكويت", [
+        ("الكويت", 29.36700, 47.97429), ("حولي", 29.3328, 48.0286),
+        ("السالمية", 29.3339, 48.0761), ("الفروانية", 29.2775, 47.9586),
+        ("الجهراء", 29.3375, 47.6581), ("الفحيحيل", 29.0825, 48.1303),
+        ("الأحمدي", 29.0769, 48.0838), ("مبارك الكبير", 29.2122, 48.0607),
+    ]),
+]
+
 
 def main(path):
     data = json.load(open(path, encoding="utf-8"))
@@ -105,6 +115,9 @@ def main(path):
         cities = sorted(by_region[code].items(), key=lambda kv: -kv[1][0])
         items = ",\n".join(f'            {{"{n}", "{lat:.4f}", "{lon:.4f}"}}' for n, (_, lat, lon) in cities)
         rows.append(f'        new Region("{rname}", new String[][] {{\n{items}\n        }})')
+    for name, cities in EXTRA_REGIONS:
+        items = ",\n".join(f'            {{"{n}", "{lat:.4f}", "{lon:.4f}"}}' for n, lat, lon in cities)
+        rows.append(f'        new Region("{name}", new String[][] {{\n{items}\n        }})')
     body = ",\n".join(rows)
     out = Path(__file__).resolve().parents[2] / "android/app/src/main/java/sa/urtv/screensaver/Cities.java"
     out.write_text(f"""package sa.urtv.screensaver;
@@ -124,7 +137,8 @@ final class Cities {{
     private Cities() {{}}
 }}
 """, encoding="utf-8")
-    print(f"{sum(len(v) for v in by_region.values())} cities in {len(REGIONS)} regions -> {out.name}")
+    print(f"{sum(len(v) for v in by_region.values()) + sum(len(c) for _, c in EXTRA_REGIONS)} cities in "
+          f"{len(REGIONS) + len(EXTRA_REGIONS)} regions -> {out.name}")
 
 
 if __name__ == "__main__":

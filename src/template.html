@@ -272,7 +272,7 @@
 
     <div class="markets">
       <div class="wxline"><span class="wxt" id="wx-temp"></span><span class="wxd" id="wx-desc"></span></div>
-      <div class="wxsub"><span id="wx-city">الرياض</span><span class="wxr" id="wx-range"></span></div>
+      <div class="wxsub"><span id="wx-city">الكويت</span><span class="wxr" id="wx-range"></span></div>
       <div class="rule l"></div>
       <div class="mk">
         <span class="m"><span>تاسي</span><span id="tasi-chg" class="delta" hidden></span></span>
@@ -292,7 +292,7 @@
       <div class="clock">
         <span class="ampm" id="ck-ap">—</span><span class="d" id="ck-h">--</span><span class="sep">:</span><span class="d" id="ck-m">--</span>
       </div>
-      <div class="subline"><span class="dot"></span><span id="clock-sub">بتوقيت الرياض</span></div>
+      <div class="subline"><span class="dot"></span><span id="clock-sub">بتوقيت الكويت</span></div>
     </div>
 
     <div class="week">
@@ -325,7 +325,7 @@
 </main>
 
 <script>
-// daily background: one photo per Riyadh day, deterministic
+// daily background: one photo per local day, deterministic
 const BGS = [
 __BG_SET__
 ];
@@ -334,19 +334,19 @@ const _Q = new URLSearchParams((location.hash || '').replace(/^#/, ''));
 const _list = k => (_Q.get(k) || '').split(',').map(x=>x.trim()).filter(Boolean);
 const _num = (k, d) => { const v = parseFloat(_Q.get(k)); return isNaN(v) ? d : v; };
 const CONFIG = {
-  city: _Q.get('city') || 'الرياض',
-  latitude: _num('lat', 24.7136),
-  longitude: _num('lon', 46.6753),
-  timezone: _Q.get('tz') || 'Asia/Riyadh',
+  city: _Q.get('city') || 'الكويت',
+  latitude: _num('lat', 29.36700),
+  longitude: _num('lon', 47.97429),
+  timezone: _Q.get('tz') || 'Asia/Kuwait',
   prayerMethod: 4,
   // followed teams in priority order: #teams=id,id,... (up to 10); older builds send team1/team2
   teamIds: (_Q.has('teams') ? _Q.get('teams').split(',')
-            : [_Q.has('team1') ? _Q.get('team1') : '136013', _Q.has('team2') ? _Q.get('team2') : '136137'])
+            : [_Q.has('team1') ? _Q.get('team1') : '133682', _Q.has('team2') ? _Q.get('team2') : '133738'])
     .map(x=>(x||'').trim()).filter(x=>/^\d+$/.test(x)).slice(0, 10),
   sportsKey: '123',
   // the card beside the clock: shows | prayers | forecast | matches | verse | none (#week=0 from older builds = none)
-  panel: (p => ['shows','prayers','forecast','matches','verse','none'].includes(p) ? p : 'verse')
-         (_Q.get('panel') || (_Q.get('week') === '0' ? 'none' : 'verse')),
+  panel: (p => ['shows','prayers','forecast','matches','verse','none'].includes(p) ? p : 'prayers')
+         (_Q.get('panel') || (_Q.get('week') === '0' ? 'none' : 'prayers')),
   matchesPerPage: 2,
   matchPageMs: 15000,
   // minutes from adhan to iqama (Ministry of Islamic Affairs defaults); Friday Dhuhr has none
@@ -372,7 +372,7 @@ const ar = s => String(s).replace(/[0-9]/g, d => AR[+d]);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pad = n => String(n).padStart(2,'0');
 
-function riyadhParts(d = new Date()){
+function localTimeParts(d = new Date()){
   const f = new Intl.DateTimeFormat('en-GB',{
     timeZone: CONFIG.timezone, hour12:false,
     year:'numeric', month:'2-digit', day:'2-digit',
@@ -386,7 +386,7 @@ function fmt12(h, mi){
 }
 
 function tickClock(){
-  const p = riyadhParts();
+  const p = localTimeParts();
   const h12 = p.h % 12 === 0 ? 12 : p.h % 12;
   // one box per digit: browsers ignore letter-spacing on Arabic digits, and ٤ reaches into the next digit
   const digits = s => [...s].map(ch => '<i>' + ch + '</i>').join('');
@@ -430,7 +430,7 @@ function buildPrayers(t){
 // Umm al-Qura: Fajr at 18.5°, Maghrib at sunset, Isha 90 min after Maghrib (120 in Ramadan),
 // Asr at shadow factor 1. Same method as Aladhan's method 4, so the offline times match to a minute or two.
 function computePrayers(){
-  const p = riyadhParts(), lat = CONFIG.latitude, lng = CONFIG.longitude;
+  const p = localTimeParts(), lat = CONFIG.latitude, lng = CONFIG.longitude;
   const tz = Math.round((Date.UTC(p.y,p.mo-1,p.d,p.h,p.mi,p.s) - Date.now()) / 60000) / 60;
   const rad = d => d*Math.PI/180, deg = r => r*180/Math.PI;
   const fix = (a,b) => { a = a - b*Math.floor(a/b); return a < 0 ? a + b : a; };
@@ -465,7 +465,7 @@ function computePrayers(){
 }
 
 async function loadPrayers(){
-  const p = riyadhParts();
+  const p = localTimeParts();
   const url = `https://api.aladhan.com/v1/timings/${pad(p.d)}-${pad(p.mo)}-${p.y}`
             + `?latitude=${CONFIG.latitude}&longitude=${CONFIG.longitude}`
             + `&method=${CONFIG.prayerMethod}&timezonestring=${encodeURIComponent(CONFIG.timezone)}`;
@@ -519,7 +519,7 @@ function tickPrayer(){
         elC=document.getElementById('prayer-count'),
         panel=document.querySelector('.p-prayer');
   if(!PRAYERS.length) return;
-  const p = riyadhParts();
+  const p = localTimeParts();
   const mins = p.h*60 + p.mi + p.s/60;
 
   // between adhan and iqama: show the iqama countdown
@@ -558,7 +558,7 @@ function ramadanStart(){
   for(let i=0;i<400;i++){
     const d = new Date(Date.now()+i*86400000);
     if(fmt.format(d) === '9'){
-      const p = riyadhParts(d);
+      const p = localTimeParts(d);
       const hy = +new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{timeZone:CONFIG.timezone,year:'numeric'})
         .format(d).replace(/[^0-9]/g,'');
       found = {y:p.y, mo:p.mo, d:p.d, hy};
@@ -587,7 +587,7 @@ function tickRamadan(){
 
   // ---- Ramadan mode: iftar / suhoor instead of the countdown ----
   if(hijriMonthNow() === 9 && PRAYERS.length){
-    const rp = riyadhParts();
+    const rp = localTimeParts();
     const mins = rp.h*60 + rp.mi + rp.s/60;
     const fajr = PRAYERS.find(p=>p.key==='Fajr');
     const maghrib = PRAYERS.find(p=>p.key==='Maghrib');
@@ -608,7 +608,7 @@ function tickRamadan(){
   const st = ramadanStart();
   elL.textContent = 'رمضان ' + ar(st ? st.hy : hijriYearNow());
   if(!st){ elD.textContent='—'; elS.textContent=''; return; }
-  const rp2 = riyadhParts();
+  const rp2 = localTimeParts();
   const days = Math.max(0, Math.round(
     (Date.UTC(st.y, st.mo-1, st.d) - Date.UTC(rp2.y, rp2.mo-1, rp2.d)) / 86400000));
   elD.innerHTML = ar(days) + ' <span class="unit">يوم</span>';
@@ -1014,7 +1014,7 @@ function renderPanel(animate){
 
 function prayerRows(){
   if(!DAY_TIMES) return [];
-  const p = riyadhParts(), now = p.h * 60 + p.mi;
+  const p = localTimeParts(), now = p.h * 60 + p.mi;
   const names = {Fajr:'الفجر', Sunrise:'الشروق', Dhuhr:isFriday() ? 'الجمعة' : 'الظهر', Asr:'العصر', Maghrib:'المغرب', Isha:'العشاء'};
   let next = null;
   return Object.keys(names).filter(k => DAY_TIMES[k]).map(k => {
@@ -1069,7 +1069,7 @@ const VERSES = __VERSES__;   // assets/shared/verses.json
 // isnad and all: parts are ["n", narration] and ["q", the Prophet's words]; source is the book and its number
 const HADITH = __HADITH__;   // assets/shared/hadith.json, through src/build.py
 function quoteOfDay(){
-  const n = riyadhDayNumber(), half = Math.floor(n / 2);
+  const n = localDayNumber(), half = Math.floor(n / 2);
   if(VERSES.length && n % 2 === 0){
     const v = VERSES[half % VERSES.length];
     return {title:'آية اليوم', rows:[`<li class="quote"><span class="orn">﴿</span>${esc(v.text)}<span class="orn">﴾</span></li>`, `<li class="src">${esc(v.surah)} · ${ar(v.ayah)}</li>`]};
@@ -1125,7 +1125,7 @@ async function loadWeather(){
 
 // night dimming: transparent by day, dark after 21:00 and before 07:00
 function applyNight(){
-  const p = riyadhParts();
+  const p = localTimeParts();
   const h = p.h + p.mi/60;
   const MAX = 0.46;
   let o = 0;
@@ -1148,7 +1148,7 @@ function pixelShift(){
 
 // Background photos: the hosted set in photos/ (photos/index.json in the repo). A hosted photo is used only
 // once it has loaded; offline, or if it fails, a bundled one is shown, so the screen is never empty.
-const PHOTO_BASE = 'https://raw.githubusercontent.com/tshi-dev/UrTV/master/photos/';
+const PHOTO_BASE = '__REPO__photos/';
 let REMOTE_BGS = (()=>{ try{ return JSON.parse(localStorage.getItem('photoIndex') || '[]'); }catch(e){ return []; } })();
 
 async function loadPhotoIndex(){
@@ -1189,12 +1189,12 @@ function showBackground(url, b){
 // Every 4 days a new random set of 5 hosted photos (same draw as the launcher: Park-Miller generator seeded
 // by the 4-day period), rotating every CONFIG.photoMinutes (30 unless the owner changed it). Only the photo on screen is downloaded.
 const PHOTO_SET = 5, PHOTO_PERIOD_DAYS = 4;
-function riyadhDayNumber(){
-  const p = riyadhParts();
+function localDayNumber(){
+  const p = localTimeParts();
   return Math.floor(Date.UTC(p.y, p.mo - 1, p.d) / 86400000);
 }
 function photoSet(n){
-  const period = Math.floor(riyadhDayNumber() / PHOTO_PERIOD_DAYS);
+  const period = Math.floor(localDayNumber() / PHOTO_PERIOD_DAYS);
   let seed = (period % 2147483646) + 1;
   const pick = [];
   // Keep one Kuwait and one Roma design in every rotating set, alongside three landscape photos.
@@ -1215,9 +1215,9 @@ function photoSet(n){
 let BG_SLOT = -1, PREFETCHED = false;
 function applyBackground(force){
   try {
-    const p = riyadhParts();
+    const p = localTimeParts();
     const slotMin = CONFIG.photoMinutes;   // divides 1440, so slots count on across midnight
-    const slot = riyadhDayNumber() * (1440 / slotMin) + Math.floor((p.h * 60 + p.mi) / slotMin);
+    const slot = localDayNumber() * (1440 / slotMin) + Math.floor((p.h * 60 + p.mi) / slotMin);
     if(slot === BG_SLOT && !force) return;
     BG_SLOT = slot;
     const set = REMOTE_BGS.length ? photoSet(REMOTE_BGS.length).map(k => REMOTE_BGS[k]) : [];
@@ -1312,8 +1312,8 @@ function bootWidget(){
     if(P === 'shows' && WEEK_POOL.length > WEEK_ROWS){ WEEK_PAGE++; renderWeekPage(true); }
     if(P === 'matches'){ LIST_PAGE++; renderPanel(matchRows().length > WEEK_ROWS); }
   }, 25*1000);
-  let lastDay = riyadhDayNumber();
-  setInterval(() => { if(riyadhDayNumber() !== lastDay){ lastDay = riyadhDayNumber(); if(P === 'prayers') loadPrayers(); renderPanel(false); } }, 60*1000);
+  let lastDay = localDayNumber();
+  setInterval(() => { if(localDayNumber() !== lastDay){ lastDay = localDayNumber(); if(P === 'prayers') loadPrayers(); renderPanel(false); } }, 60*1000);
   reveal();
 }
 

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+<defs>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#111728"/><stop offset=".45" stop-color="#3c2538"/><stop offset=".82" stop-color="#bd8062"/><stop offset="1" stop-color="#f0c397"/></linearGradient>
+ <linearGradient id="stone" x2="0" y2="1"><stop stop-color="#dfbd8b"/><stop offset="1" stop-color="#81533e"/></linearGradient>
+ <linearGradient id="ground" x2="0" y2="1"><stop stop-color="#3c3431"/><stop offset="1" stop-color="#11151b"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#ffdca7" stop-opacity=".75"/><stop offset="1" stop-color="#ffdca7" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1920" height="1080" fill="url(#sky)"/><ellipse cx="1530" cy="585" rx="600" ry="300" fill="url(#glow)"/><circle cx="1530" cy="600" r="62" fill="#ffe0ad" opacity=".85"/>
+<!-- Roman skyline -->
+<path d="M0 720h180v-125h92v125h116V640h52v80h128V575h95v145h126v-92h78v92h118V624h120v96h127v-131h72v131h127v-90h104v90h185v360H0z" fill="#3b2b32" opacity=".78"/>
+<!-- Colosseum arches -->
+<path d="M190 875Q225 480 695 458q460-12 510 417l-58 185H250z" fill="url(#stone)" stroke="#f0d3a5" stroke-width="10"/>
+<path d="M268 820q21-286 426-304 397-16 428 300" fill="none" stroke="#513b3b" stroke-width="56"/>
+<path d="M288 836q21-215 406-235 369-15 398 232" fill="none" stroke="#d7b27d" stroke-width="21"/>
+<g fill="#342d32">
+ <path d="M282 833v-91q0-53 42-53t43 53v94z"/><path d="M395 802v-110q0-57 44-57t45 57v106z"/><path d="M526 773V648q0-58 46-58t46 58v121z"/><path d="M659 760V638q0-58 45-58t45 58v124z"/><path d="M789 770V652q0-57 44-57t45 57v124z"/><path d="M914 796V686q0-54 42-54t43 54v113z"/><path d="M1033 827v-94q0-51 40-51t41 51v102z"/>
+</g>
+<path d="M0 865q310-48 620 0t620 0 680 0v215H0z" fill="url(#ground)"/>
+<!-- subtle maroon and gold banner across the lower edge, Roma-inspired colors without club marks -->
+<path d="M0 1004q320-90 640 0t640 0 640 0v76H0z" fill="#661e34" opacity=".92"/>
+<path d="M0 1035q320-90 640 0t640 0 640 0" fill="none" stroke="#d6b267" stroke-width="15" opacity=".88"/>
+<g fill="#f3d49d" opacity=".8"><circle cx="138" cy="883" r="5"/><circle cx="166" cy="870" r="4"/><circle cx="1180" cy="870" r="5"/><circle cx="1212" cy="888" r="4"/><circle cx="1470" cy="846" r="5"/><circle cx="1520" cy="855" r="4"/><circle cx="1818" cy="880" r="5"/></g>
+<rect width="1920" height="1080" fill="#100d16" opacity=".17"/>
+</svg>

@@ -2,9 +2,9 @@
 
 <h1 align="center">تلفزيونك · UrTV</h1>
 
-<p align="center" dir="rtl">واجهة رئيسية عربية وشاشة توقف سعودية لتلفزيونات Android TV و Google TV، وتسريع آمن للتلفزيون.<br>يركّبها لك مساعد ذكاء اصطناعي بأمر واحد.</p>
+<p align="center" dir="rtl">شاشة تلفزيون عربية أنيقة للكويت: مواقيت الصلاة ومباريات روما وريال مدريد، مع خلفيات خاصة للكويت وروما.</p>
 
-<p align="center">An Arabic home screen and a Saudi screensaver for Android TV / Google TV, and a safe speed-up.<br>Your AI agent sets it all up.</p>
+<p align="center">An elegant Arabic Android TV screensaver for Kuwait, with prayer times, Roma and Real Madrid fixtures, and custom Kuwait and Rome wallpapers.</p>
 
 <p align="center"><img src=".github/screens/before-after-home.jpg" alt="Before: Google TV home. After: the تلفزيونك home screen" width="100%"></p>
 <p align="center"><img src=".github/screens/before-after-screensaver.jpg" alt="Before: the Google screensaver. After: شاشة تلفزيونك" width="100%"></p>
@@ -28,10 +28,10 @@
 
 ### ③ الصق هذا
 
-> ركّب تلفزيوني من https://github.com/tshi-dev/UrTV: انسخ المستودع واتبع `docs/SETUP-PROMPT.md` خطوة بخطوة. أنت على كمبيوتر متصل بنفس شبكة الواي فاي حقت التلفزيون.
+> ركّب تلفزيوني من https://github.com/sa3adox/UrTV: انسخ المستودع واتبع `docs/SETUP-PROMPT.md` خطوة بخطوة. أنت على كمبيوتر متصل بنفس شبكة الواي فاي حقت التلفزيون.
 
 #### وش يصير بعد اللصق؟
-يسألك عن **مدينتك** و**أنديتك**، والتلفزيون يسألك **Allow** مرة وحدة، وبعدها خلّه يشتغل: 40 دقيقة وكم إعادة تشغيل.
+الإعداد الافتراضي الكويت وروما وريال مدريد ومواقيت الصلاة. غيّرها من الإعدادات إذا رغبت، ثم خلّه يشتغل: نحو 40 دقيقة وكم إعادة تشغيل.
 
 #### بترجعه مثل ما كان؟
 نعم، بأي وقت: تطبيقاتنا تنحذف، واللي أطفأناه يرجع، وشاشة التلفزيون الأصلية ترجع.
@@ -64,10 +64,10 @@ Settings → About → press OK on **Build** 7 times. Then go to **Developer opt
 
 ### ③ Paste this
 
-> Set up my TV with https://github.com/tshi-dev/UrTV: clone it and follow `docs/SETUP-PROMPT.md` step by step. You are on a computer on the same Wi-Fi as the TV.
+> Set up my TV with https://github.com/sa3adox/UrTV: clone it and follow `docs/SETUP-PROMPT.md` step by step. You are on a computer on the same Wi-Fi as the TV.
 
 #### What happens after pasting?
-It asks your **city** and your **clubs**, the TV asks **Allow** once, then leave it: 40 minutes, a few restarts.
+Defaults are Kuwait, Roma, Real Madrid, and prayer times. Change them in settings if you want, then leave it: about 40 minutes and a few restarts.
 
 #### Can I put it back as it was?
 Yes, anytime: our apps are removed, what we turned off comes back on, the TV's own screen returns.
@@ -90,12 +90,12 @@ screen: [docs/RECREATE-PROMPT.md](docs/RECREATE-PROMPT.md).
 
 | | | |
 |---|---|---|
-| **شاشة تلفزيونك** · screensaver | Clock, Hijri date, prayer times and iqama, Ramadan, your teams' matches, weather, markets, and beside the clock your choice of new episodes, today's prayers, the 5-day forecast, all your teams' games, or a verse/hadith of the day, over Saudi landscapes | `urtv-screensaver.apk` |
+| **شاشة تلفزيونك** · screensaver | Clock, Hijri date, Kuwait prayer times and iqama, Ramadan, Roma and Real Madrid matches, weather and markets, over custom Kuwait and Rome wallpapers | `urtv-screensaver.apk` |
 | **تلفزيونك** · home screen | Clean Arabic launcher: favourites row (5–10 apps) arranged in «ترتيب المفضلة», all apps, inputs, Wi-Fi, settings; optional card from the screensaver (off by default) | `urtv-home.apk` |
 | **Two free apps** | [TV Bro](https://github.com/truefedex/tv-bro), a web browser for the TV, and [SmartTube](https://github.com/yuliskov/SmartTube), YouTube without ads, from their own releases (skip with `SKIP_EXTRAS=1`) | `optimize/install.sh extras` |
 | **Speed-up** | Telemetry, ads and demos off (reversibly), closed apps frozen, Play Store kept from running in the background, faster animations | `optimize/` |
 
-**Download the apps yourself:** [releases/apk-latest](https://github.com/tshi-dev/UrTV/releases/tag/apk-latest)
+**Download the apps yourself:** [releases/apk-latest](https://github.com/sa3adox/UrTV/releases/tag/apk-latest)
 (install with `adb install`; the agent route above also sets everything up).
 Every build is also kept as a numbered release (`v3.N`, the apps' version), to go back to one:
 `APK_TAG=v3.N optimize/install.sh all`.

@@ -7,6 +7,7 @@ tv.html             for the Android app: same page, but fonts and bundled photos
 """
 import base64
 import json
+import os
 import re
 import unicodedata
 from pathlib import Path
@@ -19,7 +20,9 @@ FONTS = {
     "__F_DISPLAY__": "ThmanyahDisplay-Bold.woff2",
 }
 # tv.html points here for fonts and bundled photos; the app answers from its assets, a browser from GitHub.
-REPO = "https://raw.githubusercontent.com/tshi-dev/UrTV/master/"
+GITHUB_REPO = os.environ.get("URTV_REPO", "sa3adox/UrTV")
+BRANCH = os.environ.get("URTV_BRANCH", "master")
+REPO = f"https://raw.githubusercontent.com/{GITHUB_REPO}/{BRANCH}/"
 
 
 BASMALA = "بسم الله الرحمن الرحيم"   # compared without harakat: the API orders them its own way
@@ -216,6 +219,7 @@ def js_json(value):
 
 def main():
     html = (ROOT / "src/template.html").read_text(encoding="utf-8")
+    html = html.replace("__REPO__", REPO)
     # 2 KB, so inlined in both pages
     html = html.replace("__F_MARKS__", data_uri(ROOT / "assets/fonts/NotoNaskhArabic-Marks.woff2", "font/woff2"))
     teams = json.loads((ROOT / "assets/shared/teams-ar.json").read_text(encoding="utf-8"))

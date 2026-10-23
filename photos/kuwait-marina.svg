@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+<defs>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#07162b"/><stop offset=".52" stop-color="#173b5b"/><stop offset=".82" stop-color="#c17d71"/><stop offset="1" stop-color="#f0b887"/></linearGradient>
+ <linearGradient id="sea" x2="0" y2="1"><stop stop-color="#17475b"/><stop offset="1" stop-color="#071824"/></linearGradient>
+ <linearGradient id="tower" x2="0" y2="1"><stop stop-color="#c3dbe0"/><stop offset="1" stop-color="#4c7180"/></linearGradient>
+ <radialGradient id="sun"><stop stop-color="#ffdba7" stop-opacity=".9"/><stop offset="1" stop-color="#ffdba7" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1920" height="1080" fill="url(#sky)"/><ellipse cx="1420" cy="620" rx="540" ry="280" fill="url(#sun)"/><circle cx="1420" cy="635" r="66" fill="#ffdda5"/>
+<!-- Kuwait City waterfront skyline -->
+<path fill="#142a3e" d="M0 708h70V590h38v118h42V548h34v160h43v-91h36v91h47V572h35v136h40v-79h52v79h41V505h36v203h43v-108h48v108h35V566h45v142h40v-84h50v84h41V532h33v176h46v-91h45v91h39V603h52v105h43v-154h37v154h48v-94h43v94h51V570h38v138h43V624h56v84h38V543h35v165h51v-108h46v108h48v-73h52v73h49v-125h37v125h80v372H0z"/>
+<!-- iconic spherical Kuwait Towers -->
+<g stroke="#e8d4b3" stroke-width="7" stroke-linejoin="round">
+ <path d="M390 1080 475 478q7-43 47-43t48 43l92 602z" fill="url(#tower)"/>
+ <path d="M450 700q70-57 147 0l-10 68q-62-45-126 0z" fill="#d3a06d"/>
+ <path d="M600 1080 686 364q6-44 47-44t49 44l91 716z" fill="url(#tower)"/>
+ <path d="M660 590q72-59 149 0l-10 67q-64-45-129 0z" fill="#d3a06d"/>
+ <path d="M845 1080 915 544q7-42 44-42t46 42l76 536z" fill="url(#tower)"/>
+ <path d="M895 712q68-53 133 0l-9 59q-57-41-115 0z" fill="#d3a06d"/>
+</g>
+<path d="M0 748q230-34 460 0t460 0 460 0 540 0v332H0z" fill="#10263a" opacity=".84"/>
+<rect y="818" width="1920" height="262" fill="url(#sea)"/>
+<path d="M0 869q190-20 380 0t380 0 380 0 380 0 400 0M0 940q220-18 440 0t440 0 440 0 600 0M0 1018q190-14 380 0t380 0 380 0 780 0" fill="none" stroke="#e2c49a" stroke-width="5" opacity=".42"/>
+<!-- marina lights -->
+<g fill="#ffd58f"><circle cx="115" cy="806" r="7"/><circle cx="210" cy="798" r="5"/><circle cx="300" cy="810" r="6"/><circle cx="1115" cy="803" r="6"/><circle cx="1220" cy="798" r="5"/><circle cx="1550" cy="806" r="7"/><circle cx="1695" cy="798" r="5"/><circle cx="1810" cy="809" r="6"/></g>
+<rect width="1920" height="1080" fill="#071321" opacity=".19"/>
+</svg>
